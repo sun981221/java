@@ -70,8 +70,11 @@ public class demo {
             // 将表格写入文件
             LocalDateTime now = LocalDateTime.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMddHHmmss");
-            FileOutputStream outputStream = new FileOutputStream("\\Users\\sun\\Desktop\\导入客户数据表_"
+            FileOutputStream outputStream = new FileOutputStream("/Users/sun/Desktop/导入客户数据表_"
                     + now.format(formatter)+".xls");
+//            FileOutputStream outputStream = new FileOutputStream("/home/test/excel_files/导入客户数据表_"
+//                    + now.format(formatter)+".xls");
+
             workbook.write(outputStream);
             workbook.close();
             outputStream.close();
