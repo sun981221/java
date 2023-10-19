@@ -13,7 +13,7 @@ public class GoogleDriver { // Chrome浏览器驱动类
         //设置临时环境变量，指定chrome使用静默模式，减少日志输出量
         System.setProperty("webdriver.chrome.silentOutput", "true");
         /**
-         * Chromeoption对象可以为chrome启动时定制许多参数，需要用到更多参数可以查阅chromeoptions相关说明。
+         * Chrome option对象可以为chrome启动时定制许多参数，需要用到更多参数可以查阅chrome options相关说明。
          */
         // chrome浏览器参数对象
         ChromeOptions option = new ChromeOptions();
@@ -39,7 +39,7 @@ public class GoogleDriver { // Chrome浏览器驱动类
 
     }
 
-    public WebDriver getdriver() {
+    public WebDriver getDriver() {
         return this.driver;
     }
 }

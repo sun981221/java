@@ -14,24 +14,21 @@ public class SeleniumDemo {
         //启动浏览器驱动
 //        WebDriverManager.chromedriver().setup();
 
-        //创建一个驱动对象
-        WebDriver driver = new ChromeDriver();
-
         //创建一个浏览器参数对象
         ChromeOptions chromeOptions = new ChromeOptions();
+        System.setProperty("web-driver.chrome.driver", "chromedriver");
 
-
-        try {
-            System.setProperty("web-driver.chrome.driver", "chromedriver");
-
-            //设置临时环境变量，指定chrome使用静默模式，减少日志输出量
-            System.setProperty("web-driver.chrome.silentOutput", "true");
-//            设置自动化启动时，不显示正在受到自动化软件控制的提示栏
-//            chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation", "load-extension"});
-//            chromeOptions.addArguments("--start-maximized");
-//            chromeOptions.addArguments("--user-data-dir=/Users/sun/Documents/Program/Java/JavaProject/WebAutoTest/src/main/java/com/testing/DriverSelf/Chrome");
+        //设置临时环境变量，指定chrome使用静默模式，减少日志输出量
+        System.setProperty("web-driver.chrome.silentOutput", "true");
+//        设置自动化启动时，不显示正在受到自动化软件控制的提示栏
+        chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation", "load-extension"});
+        chromeOptions.addArguments("--start-maximized");
+//        chromeOptions.addArguments("--user-data-dir=/Users/sun/Documents/Software/chromedriver-mac-arm64/Chrome");
 //
 
+        //创建一个驱动对象
+        WebDriver driver = new ChromeDriver(chromeOptions);
+        try {
             //最大化窗口
             driver.manage().window().maximize();
 

@@ -2,7 +2,7 @@ package com.testing.web;
 
 import com.testing.DriverSelf.GoogleDriver;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -36,8 +36,8 @@ public class WebKeyWord {
         switch (browserType) {
             case "chrome": {
                 GoogleDriver googleDriver = new GoogleDriver();
-                driver = googleDriver.getdriver();
-                driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS)
+                driver = googleDriver.getDriver();
+                driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
                 break;
 
             }
@@ -109,6 +109,12 @@ public class WebKeyWord {
     }
 
 
+    public  void  hover(String xpath){
+        Actions actions = new Actions(driver);
+        WebElement element = driver.findElement(By.xpath(xpath));
+        actions.moveToElement(element).pause(1000).moveByOffset(0,95).perform();
+    }
+
     //form表单提交数据的方法
     public void submit(String xpath) {
         driver.findElement(By.xpath(xpath)).submit();
@@ -147,6 +153,7 @@ public class WebKeyWord {
         try {
             String js="document.querySelector('"+cssSelector+"').click()";
             JavascriptExecutor jsExe=(JavascriptExecutor) this.driver;
+            //可以传可变参数，提供操作对象的列表；用arguments[0]取出来进行调用
             jsExe.executeScript(js);
         } catch (Exception e) {
             System.out.println("执行JS语句失败");
@@ -175,14 +182,12 @@ public class WebKeyWord {
     }
 
     //获取标题进行断言
-    public boolean assertTitle(String expectedTitle) {
+    public void assertTitle(String expectedTitle) {
         String actualTitle = driver.getTitle();
         if (actualTitle.contains(expectedTitle)) {
             System.out.println("测试通过");
-            return true;
         } else {
             System.out.println("测试失败");
-            return false;
         }
 
     }
